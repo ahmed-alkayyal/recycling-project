@@ -1,0 +1,17 @@
+$table->id();
+            $table->timestamps();
+            $table->string('name');
+            $table->string('img');
+            $table->enum('type',array('لابتوب','شاشه','هاتف','بطاريه'));
+            $table->enum('status',array('جديد','مستعمل','مكسور'));
+            $table->enum('consent',array('0','1'))->default('0');
+            $table->string('description')->nullable();
+            $table->decimal('price')->nullable();
+            $table->foreign('client_id')->references('id')->on('clients')
+						->onDelete('no action')
+						->onUpdate('no action');
+///////////////////////////////////////////////////////
+public function electronic_wastes()
+    {
+        return $this->hasMany(Electronic_waste::class);
+    }
